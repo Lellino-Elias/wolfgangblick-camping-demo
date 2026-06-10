@@ -1,0 +1,77 @@
+import Image from "next/image";
+import Reveal from "@/components/ui/Reveal";
+import Words from "@/components/ui/Words";
+import { campsite } from "@/content/campsite.config";
+
+export default function TrustBar() {
+  const { heading, headingEmphasis, intro } = campsite.trust;
+  const hasEmph = Boolean(headingEmphasis) && heading.includes(headingEmphasis);
+  const awards = campsite.awards.filter((a) => a.image);
+
+  return (
+    <section className="relative overflow-hidden border-y border-line bg-bg2 px-5 py-16 md:px-8 md:py-28">
+      {/* faint warm/lake wash */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(120% 90% at 50% -10%, color-mix(in oklab, var(--gold) 8%, transparent) 0%, transparent 55%), radial-gradient(80% 70% at 50% 120%, color-mix(in oklab, var(--lake) 6%, transparent) 0%, transparent 60%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-[1080px] text-center">
+        <Reveal soft>
+          <h2 className="font-display mx-auto max-w-[20ch] text-[clamp(1.85rem,7vw,3.05rem)] font-extrabold leading-[1.08] md:leading-[1.03] tracking-tight text-ink">
+            <Words text={heading} emphasis={hasEmph ? headingEmphasis : undefined} />
+          </h2>
+          <p className="mx-auto mt-5 max-w-[52ch] text-base leading-relaxed text-muted md:text-lg">
+            {intro}
+          </p>
+          <div className="mx-auto mt-8 h-0.5 w-12 rounded-full bg-gradient-to-r from-transparent via-gold to-transparent" />
+        </Reveal>
+
+        <Reveal delay={120}>
+          <ul className="mx-auto mt-8 md:mt-11 flex max-w-[880px] flex-wrap justify-center gap-3.5">
+            {campsite.usps.map((u) => (
+              <li
+                key={u}
+                className="inline-flex max-w-full items-center gap-2.5 rounded-full border border-line bg-surface/60 py-2.5 pl-3.5 pr-4 sm:py-3 sm:pl-4 sm:pr-5 text-sm font-medium text-ink shadow-[0_1px_0_rgba(255,255,255,0.7)_inset]"
+              >
+                <span className="grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-gold/10">
+                  <svg width="13" height="13" viewBox="0 0 16 16" className="text-gold">
+                    <path d="M3 8.5l3.2 3.3L13 4.5" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                {u}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        {awards.length > 0 && (
+          <Reveal delay={220}>
+            <div className="mt-10 md:mt-14 flex flex-wrap items-stretch justify-center gap-5 md:gap-7">
+              {awards.map((a) => (
+                <figure key={a.label} className="flex w-[min(248px,82vw)] flex-col items-center gap-4">
+                  <div className="grid aspect-[1.42/1] w-full place-items-center rounded-3xl bg-surface px-7 py-6 shadow-[0_18px_40px_-22px_rgba(28,35,30,0.3)]">
+                    <Image
+                      src={a.image!.src}
+                      alt={a.image!.alt}
+                      width={180}
+                      height={120}
+                      className="max-h-[118px] w-auto object-contain"
+                    />
+                  </div>
+                  <figcaption className="max-w-[20ch] text-center text-sm font-semibold leading-snug text-muted">
+                    {a.label}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </Reveal>
+        )}
+      </div>
+    </section>
+  );
+}

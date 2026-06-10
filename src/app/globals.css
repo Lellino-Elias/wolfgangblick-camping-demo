@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────────────────
+   Theme tokens — mapped to Tailwind utilities (bg-bg, text-ink,
+   text-gold, border-line, font-display …). Values live in the
+   [data-theme] blocks below, so swapping the theme swaps the look.
+   ─────────────────────────────────────────────────────────── */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg2);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-lake: var(--lake);
+  --color-lake-deep: var(--lake-deep);
+  --color-line: var(--line);
+
+  --font-display: var(--font-bricolage), "Georgia", serif;
+  --font-serif: var(--font-fraunces), "Georgia", serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── Kuratierte Farbwelten. Pro Lead wählt der Build EINE (config.theme); Default = editorial.
+      Gleiche Token-Namen überall — nur die Werte wechseln, Layout/Spacing bleiben kanonisch. ── */
+
+/* editorial: Sonnige See-Editorial — hell & luftig (Default) */
+:root,
+[data-theme="editorial"] {
+  --bg: #f6f2ea;
+  --bg2: #efe8da;
+  --surface: #ffffff;
+  --ink: #1c231e;
+  --muted: #5f6b63;
+  --gold: #a8651a;
+  --gold-soft: #8c5114;
+  --lake: #2c7b72;
+  --lake-deep: #1d4f48;
+  --line: color-mix(in oklab, var(--ink) 13%, transparent);
+  --hero-emph: #e6b667;
+}
+
+/* alpin: kühles Tannengrün + warmes Holz — Berg, Wald, Natur pur */
+[data-theme="alpin"] {
+  --bg: #f3f5f0;
+  --bg2: #e9ede3;
+  --surface: #ffffff;
+  --ink: #1b231d;
+  --muted: #5b685e;
+  --gold: #2f6e54;
+  --gold-soft: #265c46;
+  --lake: #8a6a3a;
+  --lake-deep: #5d4623;
+  --line: color-mix(in oklab, var(--ink) 13%, transparent);
+  --hero-emph: #cfe3c8;
+}
+
+/* schiefer: warmes Grau + Terracotta — traditionell, Bauernhof, klassisch */
+[data-theme="schiefer"] {
+  --bg: #f5f3ef;
+  --bg2: #ece8e1;
+  --surface: #ffffff;
+  --ink: #262220;
+  --muted: #6b645c;
+  --gold: #b05238;
+  --gold-soft: #96412b;
+  --lake: #45617a;
+  --lake-deep: #2e445a;
+  --line: color-mix(in oklab, var(--ink) 13%, transparent);
+  --hero-emph: #f0b9a0;
+}
+
+/* cinematic: dunkel & dramatisch — nur für durchgehend starke, stimmungsvolle Bilder */
+[data-theme="cinematic"] {
+  --bg: #0a100e;
+  --bg2: #0d1513;
+  --surface: #14201d;
+  --ink: #f2efe6;
+  --muted: #9eb0a7;
+  --gold: #e3b466;
+  --gold-soft: #d3a04a;
+  --lake: #74bcb1;
+  --lake-deep: #1d4f48;
+  --line: color-mix(in oklab, var(--ink) 14%, transparent);
+  --hero-emph: #e3b466;
+}
+
+html {
+  background-color: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--gold);
+  color: #fff;
+}
+
+/* Very subtle paper grain (fixed, non-interactive) */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.font-display { font-family: var(--font-display); }
+.font-serif { font-family: var(--font-serif); }
+
+.emph {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+/* Hero scroll cue — gentle bobbing chevron */
+@keyframes scroll-bob {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(7px); opacity: 1; }
+}
+.scroll-bob { animation: scroll-bob 1.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .scroll-bob { animation: none; } }
+
+/* Scroll-reveal. Content is VISIBLE by default (robust: if JS is slow or fails,
+   nothing is ever stuck invisible). A tiny inline bootstrap in <body> adds
+   `reveal-js` to <html> before paint when JS is present, which arms the
+   hidden→animate-in state; it then adds `.is-in` on scroll (+ a 1.2s safety
+   that reveals everything regardless). */
+.reveal {
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-js .reveal:not(.is-in) {
+  opacity: 0;
+  transform: translateY(24px);
+}
+/* "soft" hosts fade only (no block-shift) — the words/media inside choreograph themselves */
+.reveal-js .reveal.reveal-soft:not(.is-in) {
+  transform: none;
+}
+
+/* ── Wort-Masken-Reveal für Headlines (choreografiert statt Block-Fade) ──
+   Jedes Wort sitzt in einer overflow-Maske und steigt gestaffelt auf
+   (--wi = Wort-Index). Ohne JS: sofort sichtbar. */
+.wsplit .w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* Descender-Schutz bei enger Zeilenhöhe (g, y, j) */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.wsplit .w > span {
+  display: inline-block;
+  transform: translateY(118%);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--wi, 0) * 60ms);
+}
+.reveal.is-in .wsplit .w > span,
+html:not(.reveal-js) .wsplit .w > span {
+  transform: none;
+}
+
+/* ── Media-Settle: Sektionsbilder landen mit langsamem Scale-Settle ──
+   Nur der Vor-Zustand wird gesetzt; nach .is-in greifen die normalen
+   Hover-Transforms wieder ungestört. */
+.media-rise img {
+  transition: transform 1.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-js .reveal:not(.is-in) .media-rise img {
+  transform: scale(1.06);
+}
+
+/* ── Animierte Link-Unterstreichung (Footer/Dropdowns) ── */
+.lnk {
+  position: relative;
+}
+.lnk::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0.18em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+  transition: right 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.lnk:hover::after,
+.lnk:focus-visible::after,
+a:hover > .lnk::after,
+a:focus-visible > .lnk::after {
+  right: 0;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Soft background glows (booking heading) */
+.tl-glow { position: absolute; border-radius: 9999px; filter: blur(90px); opacity: 0.45; will-change: transform; }
+
+/* Tastatur-Fokus: sichtbarer, themebewusster Ring (Maus-Klicks bleiben ringfrei) */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
