@@ -20,6 +20,14 @@ export default function Hero() {
   const after = emphAt >= 0 ? claim.slice(emphAt + claimEmphasis.length) : "";
   const hero = campsite.hero.aerial;
   const left = campsite.heroVariant === "left";
+  // Proportionen: langer Claim → kleinere Stufe, sonst erschlägt die Headline die Hero-Section.
+  // Literale Tailwind-Klassen (JIT scannt den Quelltext — niemals dynamisch zusammensetzen!).
+  const sizeCls =
+    claim.length >= 55
+      ? "text-[clamp(1.75rem,6.5vw,3.9rem)]"
+      : claim.length >= 39
+        ? "text-[clamp(1.9rem,7.5vw,4.6rem)]"
+        : "text-[clamp(2rem,9vw,5.5rem)]";
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -56,8 +64,11 @@ export default function Hero() {
       {/* Content — zentriert (Default) oder linksbündig (heroVariant: "left") */}
       <div className={`reveal reveal-soft relative z-10 mx-auto flex h-full max-w-[1320px] flex-col justify-center px-5 md:px-8 ${left ? "items-start text-left" : "items-center text-center"}`}>
         <h1
-          className={`font-display text-[clamp(2rem,9vw,5.5rem)] font-extrabold leading-[1.04] md:leading-[0.98] tracking-tight text-white [text-wrap:balance] ${left ? "max-w-3xl" : "mx-auto max-w-4xl"}`}
-          style={{ textShadow: "0 2px 30px rgba(0,0,0,0.4)" }}
+          className={`font-display ${sizeCls} font-extrabold leading-[1.04] md:leading-[0.98] tracking-tight text-white [text-wrap:balance] ${left ? "max-w-3xl" : "mx-auto max-w-4xl"}`}
+          // drop-shadow-FILTER statt text-shadow: der Filter wird NACH dem Wort-Masken-Clipping
+          // gerechnet → keine sichtbaren Schatten-Boxen mehr an den Maskenkanten (overflow:hidden
+          // schnitt den 30px-text-shadow pro Wort hart ab = die „kantigen Blöcke" hinterm Text).
+          style={{ filter: "drop-shadow(0 2px 22px rgba(0,0,0,0.45))" }}
         >
           <Words text={claim} emphasis={emphAt >= 0 ? claimEmphasis : undefined} emphasisClass="font-serif italic font-normal" emphasisStyle={{ color: "var(--hero-emph)" }} />
         </h1>

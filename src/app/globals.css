@@ -161,13 +161,16 @@ body {
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
-  /* Descender-Schutz bei enger Zeilenhöhe (g, y, j) */
-  padding-bottom: 0.12em;
-  margin-bottom: -0.12em;
+  /* Glyphen-Schutz an ALLEN Kanten: unten Descender (g, y, j), oben i-Punkte/Umlaute/Kursiv-
+     Ascender („Ski" verlor den i-Punkt), seitlich Kursiv-Überhang. Negative Margins gleichen
+     das Layout exakt aus — Maske größer, Textfluss identisch. */
+  padding: 0.18em 0.1em 0.12em;
+  margin: -0.18em -0.1em -0.12em;
 }
 .wsplit .w > span {
   display: inline-block;
-  transform: translateY(118%);
+  /* 135 % statt 118 %: durch das größere Masken-Padding braucht der versteckte Zustand mehr Weg */
+  transform: translateY(135%);
   transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: calc(var(--wi, 0) * 60ms);
 }

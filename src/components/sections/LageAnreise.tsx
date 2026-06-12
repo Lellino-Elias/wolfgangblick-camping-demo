@@ -36,12 +36,14 @@ export default function LageAnreise() {
           <div className="relative h-[300px] sm:h-[360px] overflow-hidden rounded-[2rem] lg:h-full lg:min-h-[460px]">
             {coords ? (
               <>
-                <MapClient lat={coords.lat} lng={coords.lng} label={name} />
+                <MapClient lat={coords.lat} lng={coords.lng} label={name} approx={!!coords.approx} />
                 <div className="pointer-events-none absolute bottom-4 left-4 right-4 max-w-[calc(100%-2rem)] leading-snug z-[1000] rounded-full border border-line bg-bg/80 px-4 py-2 text-xs text-ink backdrop-blur-md">
-                  {adresse}
+                  {coords.approx ? `Ungefähre Lage · ${adresse}` : adresse}
                 </div>
                 <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${coords.lat},${coords.lng}`}
+                  href={coords.approx
+                    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name}, ${adresse}`)}`
+                    : `https://www.google.com/maps/search/?api=1&query=${coords.lat},${coords.lng}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute right-3 top-3 z-[1000] inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2.5 text-[13px] min-h-[44px] md:right-4 md:top-4 md:py-2 md:text-xs md:min-h-0 font-semibold text-white shadow-lg transition-colors hover:bg-gold-soft"

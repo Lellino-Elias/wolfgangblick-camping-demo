@@ -17,7 +17,6 @@ const wolfgangblick: CampsiteConfig = {
   see: "Wolfgangsee",
   regionLong: "Wolfgangsee · Salzkammergut · Salzburg",
 
-  theme: "alpin",
   heroVariant: "center",
 
   claim: "Dein Sommer in erster Reihe am Wolfgangsee",
