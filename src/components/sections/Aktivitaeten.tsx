@@ -72,7 +72,7 @@ export default function Aktivitaeten() {
         {/* Desktop: GSAP scroll-driven horizontal (section pinned). Mobile/tablet: native swipe. */}
         <div
           ref={trackRef}
-          className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 md:px-8 lg:w-max lg:snap-none lg:overflow-visible lg:pb-0 lg:will-change-transform"
+          className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 md:px-8 lg:mx-auto lg:w-max lg:snap-none lg:overflow-visible lg:pb-0 lg:will-change-transform"
         >
           {items.map((a) => (
             <article
