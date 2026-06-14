@@ -80,7 +80,7 @@ const wolfgangblick: CampsiteConfig = {
     features: [
       {
         title: "Direkt am Seeufer",
-        text: "Unser Platz liegt an der engsten Stelle des Wolfgangsees, mit freiem Blick auf den Wallfahrtsort St. Wolfgang — 80 Touristen- und 50 Dauerstellplätze.",
+        text: "An der engsten Stelle des Wolfgangsees gelegen, mit Blick auf St. Wolfgang — 80 Touristen- und 50 Dauerstellplätze.",
         image: { src: `${IMG}/gallery-ca0d30a3d4.webp`, alt: "Wiesenstellplätze am Ufer des Wolfgangsees beim Camping Wolfgangblick" },
       },
       {
