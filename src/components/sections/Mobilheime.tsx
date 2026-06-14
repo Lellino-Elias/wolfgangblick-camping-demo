@@ -48,7 +48,7 @@ export default function Mobilheime() {
                       </span>
                     )}
                   </div>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">{m.text}</p>
+                  <p className="mt-2 line-clamp-3 min-h-[4.4em] text-[0.9375rem] leading-relaxed text-muted">{m.text}</p>
                   {m.features && (
                     <ul className="mt-4 flex flex-wrap gap-2">
                       {m.features.map((f) => (

@@ -41,7 +41,7 @@ export default function BrandStatement() {
                     {p.title}
                   </h3>
                   <p
-                    className="mt-2 max-w-[30ch] text-[0.9375rem] leading-relaxed text-white/90"
+                    className="mt-2 line-clamp-3 min-h-[4.4em] max-w-[34ch] text-[0.9375rem] leading-relaxed text-white/90"
                     style={{ textShadow: "0 1px 10px rgba(10,14,11,0.4)" }}
                   >
                     {p.text}

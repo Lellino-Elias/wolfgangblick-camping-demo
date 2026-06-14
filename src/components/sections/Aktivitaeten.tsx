@@ -83,7 +83,7 @@ export default function Aktivitaeten() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 p-7">
                 <h3 className="font-display text-2xl font-bold text-white">{a.title}</h3>
-                <p className="mt-2 max-w-xs text-[0.9375rem] text-white/85">{a.text}</p>
+                <p className="mt-2 line-clamp-3 min-h-[4.4em] max-w-xs text-[0.9375rem] text-white/85">{a.text}</p>
               </div>
             </article>
           ))}

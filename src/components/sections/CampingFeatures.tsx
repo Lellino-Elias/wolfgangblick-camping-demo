@@ -28,7 +28,7 @@ export default function CampingFeatures() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
               <div className="absolute bottom-0 left-0 p-6 md:p-10">
                 <h3 className="font-display text-3xl font-bold text-white md:text-4xl">{lead.title}</h3>
-                <p className="mt-2 max-w-md text-sm text-white/85">{lead.text}</p>
+                <p className="mt-2 line-clamp-2 max-w-md text-sm text-white/85">{lead.text}</p>
               </div>
             </article>
           </Reveal>
@@ -42,7 +42,7 @@ export default function CampingFeatures() {
                 </div>
                 <div className="p-5">
                   <h3 className="font-display text-lg font-bold text-ink">{f.title}</h3>
-                  <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-muted">{f.text}</p>
+                  <p className="mt-1.5 line-clamp-3 min-h-[4.4em] text-[0.9375rem] leading-relaxed text-muted">{f.text}</p>
                 </div>
               </article>
             </Reveal>
