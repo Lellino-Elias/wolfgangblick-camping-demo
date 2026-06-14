@@ -40,7 +40,7 @@ export default function Mobilheime() {
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <div className="flex items-baseline justify-between gap-3">
+                  <div className="flex items-start justify-between gap-3">
                     <h3 className="font-display text-2xl font-bold text-ink">{m.name}</h3>
                     {m.priceFrom && (
                       <span className="text-sm text-muted">
@@ -60,7 +60,7 @@ export default function Mobilheime() {
                   )}
                   <NavLink
                     href="#booking"
-                    className="mt-6 -mx-1 inline-flex min-h-[44px] items-center gap-2 self-start px-1 py-2 text-sm font-semibold text-gold transition-colors hover:text-gold-soft"
+                    className="mt-auto pt-6 -mx-1 inline-flex min-h-[44px] items-center gap-2 self-start px-1 py-2 text-sm font-semibold text-gold transition-colors hover:text-gold-soft"
                   >
                     Verfügbarkeit anfragen
                     <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 7h8M7.5 3.5 11 7l-3.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>

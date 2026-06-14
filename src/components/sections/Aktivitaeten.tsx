@@ -49,7 +49,7 @@ export default function Aktivitaeten() {
     return () => mm.revert();
   }, []);
 
-  if (!campsite.aktivitaeten) return null;
+  if (!campsite.aktivitaeten || !campsite.aktivitaeten.items?.length) return null;
   const { heading, intro, items } = campsite.aktivitaeten;
 
   return (
