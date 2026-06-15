@@ -81,7 +81,7 @@ const wolfgangblick: CampsiteConfig = {
       {
         title: "Direkt am Seeufer",
         text: "An der engsten Stelle des Wolfgangsees gelegen, mit Blick auf St. Wolfgang — 80 Touristen- und 50 Dauerstellplätze.",
-        image: { src: `${IMG}/gallery-ca0d30a3d4.webp`, alt: "Wiesenstellplätze am Ufer des Wolfgangsees beim Camping Wolfgangblick" },
+        image: { src: `${IMG}/gallery-79c2e74603.webp`, alt: "Luftaufnahme des Camping Wolfgangblick mit Blick auf St. Wolfgang und den Wolfgangsee" },
       },
       {
         title: "Eigener Badestrand",
@@ -91,7 +91,7 @@ const wolfgangblick: CampsiteConfig = {
       {
         title: "Schattige Stellplätze",
         text: "Hohe Bäume spenden im Hochsommer Schatten über den Plätzen — Strom, gratis Warmwasser und WLAN gehören selbstverständlich dazu.",
-        image: { src: `${IMG}/amenity-50f0211bbb.webp`, alt: "Schattige Stellplätze unter Bäumen am Camping Wolfgangblick" },
+        image: { src: `${IMG}/gallery-94e0350ef5.webp`, alt: "Stellplätze am Ufer des Wolfgangsees beim Camping Wolfgangblick aus der Vogelperspektive" },
       },
     ],
   },
@@ -120,9 +120,9 @@ const wolfgangblick: CampsiteConfig = {
     intro: "Seeluft, Bergpanorama und lange Abende am Wasser — ein paar Eindrücke vom Platz und seinem Ufer.",
     tag: "Mitte April bis Ende September",
     images: [
-      { src: `${IMG}/gallery-79c2e74603.webp`, alt: "Luftaufnahme des Camping Wolfgangblick mit Blick auf St. Wolfgang" },
-      { src: `${IMG}/gallery-94e0350ef5.webp`, alt: "Seeufer mit Bootshütten beim Camping Wolfgangblick" },
+      { src: `${IMG}/gallery-ca0d30a3d4.webp`, alt: "Panoramablick auf das Camping Wolfgangblick am Wolfgangsee aus der Luft" },
       { src: `${IMG}/gallery-d00c3b63f0.webp`, alt: "Abendsonne über den Stellplätzen am Wolfgangsee" },
+      { src: `${IMG}/gallery-7dc3f0afbc.webp`, alt: "Luftaufnahme des Camping Wolfgangblick mit Heißluftballon über dem Wolfgangsee" },
       { src: `${IMG}/hero-482b7366a8.webp`, alt: "Luftbild des Seecampingplatzes Wolfgangblick am Wolfgangsee" },
     ],
   },
